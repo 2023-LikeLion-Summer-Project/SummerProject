@@ -4,6 +4,10 @@ spring:
     username: ehdrb01
     password: rlaehdrb12!
     driver-class-name: com.mysql.cj.jdbc.Driver
+  upload:
+    dir: /path/to/upload/directory
+
+
 
 
   jpa:
