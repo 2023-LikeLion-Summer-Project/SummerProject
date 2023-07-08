@@ -1,6 +1,7 @@
 package dev.likelion.summer.service;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 @Service
 @Getter
@@ -64,4 +66,56 @@ public class KakaoService {
 
         return access_token;
     }
+
+    public HashMap<String, Object> getUserInfo(String accessToken) {
+        HashMap<String, Object> userInfo = new HashMap<>();
+
+        String reqURL = "https://kapi.kakao.com/v2/user/me";
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+
+            //    요청에 필요한 Header에 포함될 내용
+            conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            String line = "";
+            String result = "";
+
+            while ((line = br.readLine()) != null) {
+                result += line;
+            }
+            System.out.println("response body : " + result);
+
+            JsonParser parser = new JsonParser();
+            JsonElement element = parser.parse(result);
+
+            JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+            long userId = element.getAsJsonObject().get("id").getAsLong();
+
+
+            String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+            String name = kakaoAccount.getAsJsonObject().get("name").getAsString();
+            String phoneNumber = kakaoAccount.getAsJsonObject().get("phone_number").getAsString();
+            String birthDay = kakaoAccount.getAsJsonObject().get("birthday").getAsString();
+
+
+            userInfo.put("name", name);
+            userInfo.put("email", email);
+            userInfo.put("phoneNumber", phoneNumber);
+            userInfo.put("birthDay", birthDay);
+            userInfo.put("userKakaoId", userId);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return userInfo;
+    }
+
 }

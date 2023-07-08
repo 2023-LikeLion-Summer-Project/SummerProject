@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user/login")
+@RequestMapping("/user/add/kakao")
 public class KakaoController {
     private final KakaoService kakaoService;
 }
