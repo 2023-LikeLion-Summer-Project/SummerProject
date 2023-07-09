@@ -29,8 +29,8 @@ public class KakaoService {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=설정 해줘야 함");
-            sb.append("&redirect_uri=설정 해줘야 함");
+            sb.append("&client_id=66e775d4c6e22638c91bb9e4fb5e7e97");
+            sb.append("&redirect_uri=http://localhost:8080/user/add/kakao/permission");
             sb.append("&code=" + code);
 
             bw.write(sb.toString());
@@ -99,17 +99,22 @@ public class KakaoService {
             long userId = element.getAsJsonObject().get("id").getAsLong();
 
 
-            String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
-            String name = kakaoAccount.getAsJsonObject().get("name").getAsString();
-            String phoneNumber = kakaoAccount.getAsJsonObject().get("phone_number").getAsString();
-            String birthDay = kakaoAccount.getAsJsonObject().get("birthday").getAsString();
-
-
-            userInfo.put("name", name);
-            userInfo.put("email", email);
-            userInfo.put("phoneNumber", phoneNumber);
-            userInfo.put("birthDay", birthDay);
-            userInfo.put("userKakaoId", userId);
+//            String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+//            String name = kakaoAccount.getAsJsonObject().get("name").getAsString();
+//            String phoneNumber = kakaoAccount.getAsJsonObject().get("phone_number").getAsString();
+//            String birthDay = kakaoAccount.getAsJsonObject().get("birthday").getAsString();
+//
+//
+//            userInfo.put("name", name);
+//            userInfo.put("email", email);
+//            userInfo.put("phoneNumber", phoneNumber);
+//            userInfo.put("birthDay", birthDay);
+//            userInfo.put("userKakaoId", userId);
+//
+//            System.out.println("user name: " + name);
+//            System.out.println("user email: " + email);
+//            System.out.println("user phone: " + phoneNumber);
+//            System.out.println("user ID: " + userId);
 
         } catch (IOException e) {
             e.printStackTrace();

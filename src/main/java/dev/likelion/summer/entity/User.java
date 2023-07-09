@@ -15,8 +15,11 @@ public class User extends BaseEntity {
     @Id
     private String userId; // 사용자가 직접 입력 해줘야 함
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> postList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserSavedPost> userSavedPostList;
 
     private String name; // 카카오 로그인으로 받아오기
 

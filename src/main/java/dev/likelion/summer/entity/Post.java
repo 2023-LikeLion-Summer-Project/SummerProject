@@ -16,10 +16,10 @@ public class Post extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Picture> pictureList;
 
     private String header; // 제목
