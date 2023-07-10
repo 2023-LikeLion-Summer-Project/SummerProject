@@ -1,15 +1,18 @@
 package dev.likelion.summer.entity;
 
+import dev.likelion.summer.dto.PostDto;
 import dev.likelion.summer.entity.commons.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Post extends BaseEntity {
 
     @Id
@@ -27,5 +30,13 @@ public class Post extends BaseEntity {
     private String contents; // 본문
 
     private Boolean scope; // 공개 여부
+
+    public static Post toPost(PostDto postDto) {
+        return Post.builder()
+                .header(postDto.getHeader())
+                .contents(postDto.getContents())
+                .scope(postDto.getScope())
+                .build();
+    }
 
 }
