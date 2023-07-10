@@ -16,6 +16,7 @@ import java.util.HashMap;
 @Getter
 @Setter
 public class KakaoService {
+    // test
     public String[] getAccessToken(String code) throws IOException { // access token을 인가 코드를 카카오에 넘겨 다시 받아오는 역할을 수행
         String reqURL = "https://kauth.kakao.com/oauth/token";
         String access_token = "";
