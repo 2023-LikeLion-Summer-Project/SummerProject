@@ -1,9 +1,9 @@
 package dev.likelion.summer.entity;
 
+import dev.likelion.summer.dto.UserDto;
 import dev.likelion.summer.entity.commons.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.security.PrivateKey;
 import java.util.List;
@@ -11,9 +11,13 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
+@RequiredArgsConstructor
 public class User extends BaseEntity {
     @Id
-    private String userId; // 사용자가 직접 입력 해줘야 함
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> postList;
@@ -21,14 +25,20 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserSavedPost> userSavedPostList;
 
-    private String name; // 카카오 로그인으로 받아오기
+    private String nickName;
 
-    private String passWord; // 사용자가 직접 입력 해줘야 함
+    private String accessToken;
+
+    private String refreshToken;
 
     private String email; // 카카오 로그인을 통해서 받아오기 / 없어도 상관 X
 
-    private String birthDay; // 카카오 로그인을 통해서 받아오기 / 없어도 상관 X
-
-    private String phoneNumber; // 카카오 로그인을 통해서 받아오기 / 없어도 상관 X
-
+    public static User toUser(UserDto userDto) {
+        return User.builder()
+                .email(userDto.getEmail())
+                .accessToken(userDto.getAccessToken())
+                .refreshToken(userDto.getRefreshToken())
+                .nickName(userDto.getNickName())
+                .build();
+    }
 }

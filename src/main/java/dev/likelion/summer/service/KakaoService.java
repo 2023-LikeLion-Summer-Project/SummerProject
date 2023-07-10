@@ -16,12 +16,13 @@ import java.util.HashMap;
 @Getter
 @Setter
 public class KakaoService {
-    public String getAccessToken(String code) throws IOException { // access token을 인가 코드를 카카오에 넘겨 다시 받아오는 역할을 수행
+    public String[] getAccessToken(String code) throws IOException { // access token을 인가 코드를 카카오에 넘겨 다시 받아오는 역할을 수행
         String reqURL = "https://kauth.kakao.com/oauth/token";
         String access_token = "";
         String refresh_token = "";
         URL url = new URL(reqURL);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        String returnValue[] = new String[2];
 
         try {
             urlConnection.setDoOutput(true);
@@ -64,7 +65,10 @@ public class KakaoService {
             e.printStackTrace();
         }
 
-        return access_token;
+        returnValue[0] = access_token;
+        returnValue[1] = refresh_token;
+
+        return returnValue;
     }
 
     public HashMap<String, Object> getUserInfo(String accessToken) {
@@ -99,14 +103,14 @@ public class KakaoService {
             long userId = element.getAsJsonObject().get("id").getAsLong();
 
 
-//            String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
-//            String name = kakaoAccount.getAsJsonObject().get("name").getAsString();
+            String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+            String name = kakaoAccount.getAsJsonObject().get("profile").getAsJsonObject().get("nickname").getAsString();
 //            String phoneNumber = kakaoAccount.getAsJsonObject().get("phone_number").getAsString();
 //            String birthDay = kakaoAccount.getAsJsonObject().get("birthday").getAsString();
 //
 //
-//            userInfo.put("name", name);
-//            userInfo.put("email", email);
+            userInfo.put("nickname", name);
+            userInfo.put("email", email);
 //            userInfo.put("phoneNumber", phoneNumber);
 //            userInfo.put("birthDay", birthDay);
 //            userInfo.put("userKakaoId", userId);
