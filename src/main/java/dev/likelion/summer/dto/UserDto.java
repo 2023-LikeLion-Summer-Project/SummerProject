@@ -1,5 +1,6 @@
 package dev.likelion.summer.dto;
 
+import dev.likelion.summer.resquest.UserUpdateRequest;
 import lombok.*;
 
 @Getter
@@ -16,12 +17,22 @@ public class UserDto {
 
     private String nickName;
 
+    private String sentence;
+
     public static UserDto toUserDto(String accessToken, String refreshToken, String email, String nickName) {
         return UserDto.builder()
                 .email(email)
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .nickName(nickName)
+                .build();
+    }
+
+    public static UserDto toUserDto(UserUpdateRequest userUpdateRequest) {
+        return UserDto.builder()
+                .email(userUpdateRequest.getEmail())
+                .nickName(userUpdateRequest.getNickName())
+                .sentence(userUpdateRequest.getSentence())
                 .build();
     }
 }

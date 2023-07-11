@@ -31,11 +31,21 @@ public class Post extends BaseEntity {
 
     private Boolean scope; // 공개 여부
 
-    public static Post toPost(PostDto postDto) {
+    private String place; // 장소
+
+    private String sentence; // 공유게시판 업로드용
+
+    private String date; // 날짜
+
+    public static Post toPost(PostDto postDto, User user) {
         return Post.builder()
                 .header(postDto.getHeader())
                 .contents(postDto.getContents())
                 .scope(postDto.getScope())
+                .user(user)
+                .place(postDto.getPlace())
+                .date(postDto.getDate())
+                .sentence(postDto.getSentence())
                 .build();
     }
 

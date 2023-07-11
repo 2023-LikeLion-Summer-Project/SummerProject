@@ -14,4 +14,12 @@ public class PostRequest {
     private String contents;
 
     private Boolean scope;
+
+    private Long userId;
+
+    private String place;
+
+    private String sentence; // 공유게시판 업로드용
+
+    private String date; // 날짜
 }
