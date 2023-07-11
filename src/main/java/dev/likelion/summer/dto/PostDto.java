@@ -49,4 +49,16 @@ public class PostDto {
                 .date(postUpdateRequest.getDate())
                 .build();
     }
+
+    public static PostDto toPostDto(Post post) {
+        return PostDto.builder()
+                .header(post.getHeader())
+                .contents(post.getContents())
+                .scope(post.getScope())
+                .postId(post.getPostId())
+                .place(post.getPlace())
+                .sentence(post.getSentence())
+                .date(post.getDate())
+                .build();
+    }
 }

@@ -22,9 +22,6 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> postList;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<UserSavedPost> userSavedPostList;
-
     private String nickName;
 
     private String accessToken;
@@ -32,6 +29,8 @@ public class User extends BaseEntity {
     private String refreshToken;
 
     private String email; // 카카오 로그인을 통해서 받아오기 / 없어도 상관 X
+
+    private String sentence; // 사용자 소개글
 
     public static User toUser(UserDto userDto) {
         return User.builder()

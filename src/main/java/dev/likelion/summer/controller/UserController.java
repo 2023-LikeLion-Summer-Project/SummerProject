@@ -1,6 +1,9 @@
 package dev.likelion.summer.controller;
 
 import dev.likelion.summer.dto.UserDto;
+import dev.likelion.summer.entity.User;
+import dev.likelion.summer.response.UserResponse;
+import dev.likelion.summer.resquest.UserUpdateRequest;
 import dev.likelion.summer.service.KakaoService;
 import dev.likelion.summer.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -44,5 +47,26 @@ public class UserController {
         Long userId = userService.addUser(UserDto.toUserDto(accessToken, refreshToken, email, nickname));
 
         return ResponseEntity.ok(userId);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<Long> updateUser(@PathVariable Long id, @RequestBody UserUpdateRequest userUpdateRequest) {
+        Long userId = userService.updateUserId(id, UserDto.toUserDto(userUpdateRequest));
+
+        return ResponseEntity.ok(userId);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
+        User getUser = userService.getUserById(id);
+
+        return ResponseEntity.ok(UserResponse.toUserResponse(getUser));
     }
 }
