@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./img/logo.png";
+// import logo from "./img/logo.png";
 
 function main() {
   return (
@@ -7,7 +7,7 @@ function main() {
       <div className="mainbar">
         <div className="logo">
           <div>
-            <img src={logo} />
+            {/* <img src={logo} /> */}
           </div>
         </div>
         <div className="text"></div>
