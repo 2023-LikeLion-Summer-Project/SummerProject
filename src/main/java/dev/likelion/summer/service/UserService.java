@@ -44,4 +44,11 @@ public class UserService {
 
         return getUser;
     }
+
+    @Transactional
+    public User getUserByToken(String token) {
+        User getUser = userRepository.findByUserToken(token);
+
+        return getUser;
+    }
 }

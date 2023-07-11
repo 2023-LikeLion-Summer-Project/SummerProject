@@ -42,6 +42,13 @@ public class UserController {
 
     }
 
+    @GetMapping("/login/{accessToken}")
+    public ResponseEntity<UserResponse> userLogin(@PathVariable String accessToken) {
+        User getUser = userService.getUserByToken(accessToken);
+
+        return ResponseEntity.ok(UserResponse.toUserResponse(getUser));
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Long> userAdd(String accessToken, String refreshToken, String email, String nickname) {
         Long userId = userService.addUser(UserDto.toUserDto(accessToken, refreshToken, email, nickname));
