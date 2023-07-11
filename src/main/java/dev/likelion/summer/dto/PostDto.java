@@ -23,12 +23,18 @@ public class PostDto {
 
     private String place;
 
+    private String sentence; // 공유게시판 업로드용
+
+    private String date; // 날짜
+
     public static PostDto toPostDto(PostRequest postRequest) {
         return PostDto.builder()
                 .header(postRequest.getHeader())
                 .contents(postRequest.getContents())
                 .scope(postRequest.getScope())
                 .place(postRequest.getPlace())
+                .date(postRequest.getDate())
+                .sentence(postRequest.getSentence())
                 .build();
     }
 
@@ -39,6 +45,8 @@ public class PostDto {
                 .scope(postUpdateRequest.getScope())
                 .postId(postUpdateRequest.getPostId())
                 .place(postUpdateRequest.getPlace())
+                .sentence(postUpdateRequest.getSentence())
+                .date(postUpdateRequest.getDate())
                 .build();
     }
 }
