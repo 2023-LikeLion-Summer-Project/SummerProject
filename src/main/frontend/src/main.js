@@ -1,13 +1,10 @@
+import { react } from "react";
+
 function main() {
-    <div calss>
-        <div>
-            <div></div>
-            <div></div>
-        </div>
-        <div>
-            <div></div>
-            <div></div>
-        </div>
+    <div className="container">
+      <div className=""></div>
+      <div></div>
+      <div></div>
     </div>
 }
 
