@@ -42,6 +42,14 @@ public class PostController {
         return ResponseEntity.ok(postResponseList);
     }
 
+    @GetMapping("/get/scope")
+    public ResponseEntity<List<PostResponse>> getPostByScope() {
+        List<Post> postList = postService.getByScope();
+        List<PostResponse> postResponseList = postList.stream().map(PostResponse::toPostResponse).collect(Collectors.toList());
+
+        return ResponseEntity.ok(postResponseList);
+    }
+
     @PatchMapping("/update")
     public ResponseEntity<Void> updatePost(@RequestBody PostUpdateRequest postUpdateRequest) {
         postService.updatePost(PostDto.toPostDto(postUpdateRequest));

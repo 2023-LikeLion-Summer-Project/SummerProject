@@ -64,4 +64,11 @@ public class PostService {
         }
     }
 
+    @Transactional
+    public List<Post> getByScope() {
+        List<Post> postList = postRepository.findAllByScopeTrue(true);
+
+        return postList;
+    }
+
 }

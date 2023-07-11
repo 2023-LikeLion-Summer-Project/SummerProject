@@ -9,4 +9,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("select r from Post r where r.user.userId = :userId")
     List<Post> findAllByUserId(Long userId);
+
+    @Query("select r from Post r where r.scope = :scope")
+    List<Post> findAllByScopeTrue(Boolean scope);
 }
