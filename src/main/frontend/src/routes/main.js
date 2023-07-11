@@ -6,9 +6,7 @@ function main() {
     <div className="container">
       <div className="mainbar">
         <div className="logo">
-          <div>
-            {/* <img src={logo} /> */}
-          </div>
+          <div>{/* <img src={"logo"} /> */}</div>
         </div>
         <div className="text"></div>
         <div className="profile"></div>
