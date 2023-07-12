@@ -1,0 +1,124 @@
+body {
+  background: black;
+}
+.container {
+  color: white;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.mainbar {
+  position: fixed;
+  width: 1280px;
+  height: 160px;
+  z-index: 999;
+}
+.logo {
+  position: fixed;
+  width: 134px;
+  height: 34px;
+  top: 24px;
+  color: white;
+  left: 24px;
+}
+
+.home {
+  position: fixed;
+  top: 32px;
+  left: 1011px;
+  z-index: 999;
+}
+.archive {
+  position: fixed;
+  top: 32px;
+  left: 1100px;
+  z-index: 999;
+}
+.accountLogo {
+  position: fixed;
+  top: 41px;
+  left: 1200px;
+  z-index: 999;
+}
+
+.leftcontainer {
+  position: fixed;
+  width: 338px;
+  height: 832px;
+}
+
+.leftText {
+  position: absolute;
+  left: 120px;
+  top: 377px;
+}
+
+#logoT {
+  position: absolute;
+  font-size: 30px;
+  top: -60px;
+}
+
+.vector {
+  position: relative;
+  top: 133px;
+  left: 100px;
+}
+
+.text {
+  position: fixed;
+  top: 32px;
+  left: 1011px;
+}
+.logocover {
+  position: fixed;
+  width: 134px;
+  height: 34px;
+  top: 24px;
+  left: 24px;
+}
+#text2 {
+  position: relative;
+  top: 19px;
+  left: 12px;
+  line-height: 30px;
+}
+.rightcontainer {
+  position: absolute;
+  top: 70px;
+  z-index: 0;
+  left: 388px;
+  height: 100vh;
+}
+.containerBox {
+  display: inline-block;
+  width: 270px;
+  height: 402px;
+  border-radius: 10px;
+  z-index: 0;
+  background-color: #e4e4e4;
+  margin: 10px;
+}
+.containerBox2 {
+  width: 234px;
+  height: 312px;
+  z-index: 0;
+  background-color: white;
+  border-radius: 10px;
+  align-items: center;
+  margin: 18px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.underText {
+  position: relative;
+  top: 285px;
+  z-index: 0;
+}
+#underText {
+  z-index: 0;
+  font-size: 12px;
+  color: #a6a6a6;
+  text-align: center;
+}
