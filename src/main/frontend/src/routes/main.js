@@ -1,9 +1,9 @@
-import accountLogo from "../img/accountCircle.png";
+import accountLogo from "./img/accountCircle.png";
 import React from "react";
-import logo from "../img/logo.png";
+import logo from "./img/logo.png";
 import "../routes/main.css";
 import spacepic from "../img/spacepic.png";
-import vector from "../img/vector.png";
+import vector from "./img/vector.png";
 
 function main() {
   return (
