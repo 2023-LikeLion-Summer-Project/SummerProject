@@ -4,6 +4,7 @@ import "../routes/main.css";
 // import spacepic from "./img/spacepic2.png";
 import vector from "./img/vector.png";
 import Header from "../components/header";
+
 function main() {
   return (
     <div className="container">
