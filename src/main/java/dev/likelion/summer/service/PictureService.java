@@ -1,6 +1,10 @@
 package dev.likelion.summer.service;
 
+import dev.likelion.summer.entity.Picture;
+import dev.likelion.summer.repository.PictureRepository;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import java.io.File;
 import java.util.Iterator;
@@ -15,22 +19,27 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 public class PictureService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final PictureRepository pictureRepository;
 
     /**
      * 파일 업로드
      */
 
-    public void uploadFile(MultipartHttpServletRequest multiRequest) throws Exception {
+    public Picture uploadFile(MultipartHttpServletRequest multiRequest) throws Exception {
 
         // 파라미터 이름을 키로 파라미터에 해당하는 파일 정보를 값으로 하는 Map을 가져온다.
         Map<String, MultipartFile> files = multiRequest.getFileMap();
 
         // files.entrySet()의 요소를 읽어온다.
         Iterator<Entry<String, MultipartFile>> itr = files.entrySet().iterator();
+
+        Picture picture = null;
 
         MultipartFile mFile;
 
@@ -104,6 +113,20 @@ public class PictureService {
                 //생성한 파일 객체를 업로드 처리하지 않으면 임시파일에 저장된 파일이 자동적으로 삭제되기 때문에 transferTo(File f) 메서드를 이용해서 업로드처리한다.
                 mFile.transferTo(saveFile);
             }
+
+            String finalFileName;
+            if(saveFileName.equals("")) {
+                finalFileName = fileName;
+            }
+            else {
+                finalFileName = saveFileName;
+            }
+
+            picture = Picture.toPicture(filePath, finalFileName);
         }
+
+        pictureRepository.save(picture);
+
+        return picture;
     }
 }

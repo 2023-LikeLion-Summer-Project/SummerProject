@@ -1,6 +1,7 @@
 package dev.likelion.summer.service;
 
 import dev.likelion.summer.dto.PostDto;
+import dev.likelion.summer.entity.Picture;
 import dev.likelion.summer.entity.Post;
 import dev.likelion.summer.repository.PostRepository;
 import dev.likelion.summer.repository.UserRepository;
@@ -21,8 +22,8 @@ public class PostService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long addPost(PostDto postDto, Long userId) {
-        Post post = postRepository.save(Post.toPost(postDto, userRepository.getById(userId)));
+    public Long addPost(PostDto postDto, Long userId, Picture picture) {
+        Post post = postRepository.save(Post.toPost(postDto, userRepository.getById(userId), picture));
 
         return post.getPostId();
     }

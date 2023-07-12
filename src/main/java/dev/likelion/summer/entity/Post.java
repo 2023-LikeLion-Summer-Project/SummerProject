@@ -37,8 +37,9 @@ public class Post extends BaseEntity {
 
     private String date; // 날짜
 
-    public static Post toPost(PostDto postDto, User user) {
+    public static Post toPost(PostDto postDto, User user, Picture picture) {
         return Post.builder()
+                .picture(picture)
                 .header(postDto.getHeader())
                 .contents(postDto.getContents())
                 .scope(postDto.getScope())

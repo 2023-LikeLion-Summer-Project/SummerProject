@@ -1,6 +1,7 @@
 package dev.likelion.summer.controller;
 
 import dev.likelion.summer.dto.PostDto;
+import dev.likelion.summer.entity.Picture;
 import dev.likelion.summer.entity.Post;
 import dev.likelion.summer.response.PostResponse;
 import dev.likelion.summer.resquest.PostRequest;
@@ -29,14 +30,17 @@ public class PostController {
 
     @PostMapping("/add")
     public ResponseEntity<Long> addPost(@RequestBody PostRequest postRequest, MultipartHttpServletRequest multiRequest) {
-        Long postId = postService.addPost(PostDto.toPostDto(postRequest), postRequest.getUserId());
+        Picture picture = new Picture();
+
         try {
-            pictureService.uploadFile(multiRequest);
+            picture = pictureService.uploadFile(multiRequest);
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
                 logger.error("#Exception Message : {}", e.getMessage());
             }
         }
+
+        Long postId = postService.addPost(PostDto.toPostDto(postRequest), postRequest.getUserId(), picture);
 
         return ResponseEntity.ok(postId);
     }
