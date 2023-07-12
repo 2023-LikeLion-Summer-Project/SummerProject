@@ -1,0 +1,70 @@
+body {
+  background-color: #000;
+}
+
+h1 {
+  color: white;
+}
+
+header {
+  position: fixed;
+}
+
+.parent_div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: auto;
+  padding-top: 75px;
+}
+
+.main_name {
+  display: inline-block;
+  width: 594px;
+  /* padding: 0px 78px 40px 78px; */
+}
+
+.ftext {
+  color: #fff;
+  text-align: center;
+  font-size: 88px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.46px;
+}
+
+.slogan {
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 0.46px;
+}
+
+.loginbox {
+  display: inline-block;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  width: 456px;
+  height: 584px;
+  padding: 30px;
+  flex-direction: column;
+  align-items: center;
+  gap: 76px;
+}
+
+h1 {
+  margin-block-start: 0px;
+  font-size: 34.703px;
+  font-weight: 500;
+  color: black;
+  line-height: normal;
+}
+
+input {
+  border-radius: 9.254px;
+  background: #bfbfbf;
+  width: 426px;
+  height: 68px;
+  border: none;
+}
