@@ -20,7 +20,6 @@ import java.util.Map;
 
 @Service
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
 public class PictureService {

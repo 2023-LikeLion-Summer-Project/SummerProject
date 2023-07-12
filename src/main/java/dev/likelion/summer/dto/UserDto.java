@@ -11,6 +11,8 @@ import lombok.*;
 public class UserDto {
     private String accessToken;
 
+    private Long kakaoId;
+
     private String refreshToken;
 
     private String email;
@@ -19,12 +21,13 @@ public class UserDto {
 
     private String sentence;
 
-    public static UserDto toUserDto(String accessToken, String refreshToken, String email, String nickName) {
+    public static UserDto toUserDto(String accessToken, String refreshToken, String email, String nickName, Long userKakaoId) {
         return UserDto.builder()
                 .email(email)
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .nickName(nickName)
+                .kakaoId(userKakaoId)
                 .build();
     }
 
