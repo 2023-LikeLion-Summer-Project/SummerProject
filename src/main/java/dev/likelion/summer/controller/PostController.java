@@ -5,11 +5,15 @@ import dev.likelion.summer.entity.Post;
 import dev.likelion.summer.response.PostResponse;
 import dev.likelion.summer.resquest.PostRequest;
 import dev.likelion.summer.resquest.PostUpdateRequest;
+import dev.likelion.summer.service.PictureService;
 import dev.likelion.summer.service.PostService;
 import dev.likelion.summer.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,10 +23,20 @@ import java.util.stream.Collectors;
 @RequestMapping("/post")
 public class PostController {
     private final PostService postService;
+    private final PictureService pictureService;
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/add")
-    public ResponseEntity<Long> addPost(@RequestBody PostRequest postRequest) {
+    public ResponseEntity<Long> addPost(@RequestBody PostRequest postRequest, MultipartHttpServletRequest multiRequest) {
         Long postId = postService.addPost(PostDto.toPostDto(postRequest), postRequest.getUserId());
+        try {
+            pictureService.uploadFile(multiRequest);
+        } catch (Exception e) {
+            if (logger.isErrorEnabled()) {
+                logger.error("#Exception Message : {}", e.getMessage());
+            }
+        }
 
         return ResponseEntity.ok(postId);
     }

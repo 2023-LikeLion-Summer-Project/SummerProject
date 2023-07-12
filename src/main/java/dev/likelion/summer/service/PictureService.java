@@ -27,7 +27,6 @@ public class PictureService {
     public void uploadFile(MultipartHttpServletRequest multiRequest) throws Exception {
 
         // 파라미터 이름을 키로 파라미터에 해당하는 파일 정보를 값으로 하는 Map을 가져온다.
-
         Map<String, MultipartFile> files = multiRequest.getFileMap();
 
         // files.entrySet()의 요소를 읽어온다.
@@ -76,14 +75,14 @@ public class PictureService {
 
             File saveFile = new File(saveFilePath);
 
-// saveFile이 File이면 true, 아니면 false
-// 파일명이 중복일 경우 파일명(1).확장자, 파일명(2).확장자 와 같은 형태로 생성한다.
+            // saveFile이 File이면 true, 아니면 false
+            // 파일명이 중복일 경우 파일명(1).확장자, 파일명(2).확장자 와 같은 형태로 생성한다.
 
             if (saveFile.isFile()) {
                 boolean _exist = true;
                 int index = 0;
 
-// 동일한 파일명이 존재하지 않을때까지 반복한다.
+            // 동일한 파일명이 존재하지 않을때까지 반복한다.
                 while (_exist) {
                     index++;
 
@@ -97,13 +96,12 @@ public class PictureService {
                         savaFilePath = dictFile;
                     }
                 }
-
-//생성한 파일 객체를 업로드 처리하지 않으면 임시파일에 저장된 파일이 자동적으로 삭제되기 때문에 transferTo(File f) 메서드를 이용해서 업로드처리한다.
+                //생성한 파일 객체를 업로드 처리하지 않으면 임시파일에 저장된 파일이 자동적으로 삭제되기 때문에 transferTo(File f) 메서드를 이용해서 업로드처리한다.
 
                 mFile.transferTo(new File(savaFilePath));
             } else {
 
-//생성한 파일 객체를 업로드 처리하지 않으면 임시파일에 저장된 파일이 자동적으로 삭제되기 때문에 transferTo(File f) 메서드를 이용해서 업로드처리한다.
+                //생성한 파일 객체를 업로드 처리하지 않으면 임시파일에 저장된 파일이 자동적으로 삭제되기 때문에 transferTo(File f) 메서드를 이용해서 업로드처리한다.
                 mFile.transferTo(saveFile);
             }
         }

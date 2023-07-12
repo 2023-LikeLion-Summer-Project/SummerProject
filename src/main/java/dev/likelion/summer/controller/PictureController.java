@@ -17,8 +17,7 @@ public class PictureController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/register/action")
-    public void
-    boardRegisterAction(MultipartHttpServletRequest multiRequest) {
+    public void boardRegisterAction(MultipartHttpServletRequest multiRequest) {
         try {
             pictureService.uploadFile(multiRequest);
         } catch (Exception e) {
