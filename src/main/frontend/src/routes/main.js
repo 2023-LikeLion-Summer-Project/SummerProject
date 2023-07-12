@@ -1,23 +1,13 @@
-import accountLogo from "../img/accountCircle.png";
+import accountLogo from "./img/accountCircle.png";
 import React from "react";
-import logo from "../img/logo.png";
 import "../routes/main.css";
-import spacepic from "../img/spacepic.png";
-import vector from "../img/vector.png";
-
+// import spacepic from "./img/spacepic2.png";
+import vector from "./img/vector.png";
+import Header from "../components/header";
 function main() {
   return (
     <div className="container">
-      <div className="mainbar">
-        <div className="logo">
-          <div className="logocover">
-            <img className="logo" alt="logo" src={logo}></img>
-          </div>
-        </div>
-        <p className="home">Home</p>
-        <p className="archive">Archive</p>
-        <img className="accountLogo" alt="al" src={accountLogo}></img>
-      </div>
+      <Header />
       <div className="leftcontainer">
         <div className="leftText">
           <p id="logoT">

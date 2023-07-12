@@ -1,0 +1,24 @@
+.verticalLine {
+  border-left: 1px solid white;
+  height: 1000px;
+  position: fixed;
+  left: 220px;
+  top: 0px;
+}
+
+.textBoxx {
+  position: relative;
+  top: 120px;
+  left: 20px;
+}
+
+#one {
+  color: #ffffff;
+}
+
+#two {
+  color: #cecece;
+}
+#three {
+  color: #cecece;
+}
