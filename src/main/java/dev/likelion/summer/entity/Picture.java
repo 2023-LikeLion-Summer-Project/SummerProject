@@ -12,6 +12,6 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pictureId;
 
-    @ManyToOne
+    @OneToOne
     private Post post; // 게시물과 다대일 관계
 }

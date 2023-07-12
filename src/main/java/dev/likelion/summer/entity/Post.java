@@ -22,8 +22,8 @@ public class Post extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Picture> pictureList;
+    @OneToOne(mappedBy = "picture", cascade = CascadeType.ALL)
+    private Picture picture;
 
     private String header; // 제목
 
