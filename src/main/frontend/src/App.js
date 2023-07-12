@@ -1,14 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Main from "./routes/main";
+import Login from "./routes/login";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path={"/main"} element={<Main />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path={"/main"} element={<Main />} />
+      <Route path={"/Login"} element={<Login />} />
+    </Routes>
   );
 };
 
