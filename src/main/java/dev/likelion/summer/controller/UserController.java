@@ -38,7 +38,8 @@ public class UserController {
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(accessToken);
         // access token 받은 이후 사용자 정보 받아오는 것을 어디에 처리할 것인지?
 
-        userAdd(accessToken, refreshToken, userInfo.get("email").toString(), userInfo.get("nickname").toString());
+        userAdd(accessToken, refreshToken, userInfo.get("email").toString(), userInfo.get("nickname").toString(),
+                (Long) userInfo.get("userKakaoId"));
 
     }
 
@@ -46,12 +47,16 @@ public class UserController {
     public ResponseEntity<UserResponse> userLogin(@PathVariable String accessToken) {
         User getUser = userService.getUserByToken(accessToken);
 
-        return ResponseEntity.ok(UserResponse.toUserResponse(getUser));
+        if(getUser.getUserId() != null) {
+            return ResponseEntity.ok(UserResponse.toUserResponse(getUser));
+        }
+
+        return (ResponseEntity<UserResponse>) ResponseEntity.notFound();
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Long> userAdd(String accessToken, String refreshToken, String email, String nickname) {
-        Long userId = userService.addUser(UserDto.toUserDto(accessToken, refreshToken, email, nickname));
+    public ResponseEntity<Long> userAdd(String accessToken, String refreshToken, String email, String nickname, Long userKakaoId) {
+        Long userId = userService.addUser(UserDto.toUserDto(accessToken, refreshToken, email, nickname, userKakaoId));
 
         return ResponseEntity.ok(userId);
     }

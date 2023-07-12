@@ -22,6 +22,8 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> postList;
 
+    private Long kakaoUserId;
+
     private String nickName;
 
     private String accessToken;
@@ -36,6 +38,7 @@ public class User extends BaseEntity {
         return User.builder()
                 .email(userDto.getEmail())
                 .accessToken(userDto.getAccessToken())
+                .kakaoUserId(userDto.getKakaoId())
                 .refreshToken(userDto.getRefreshToken())
                 .nickName(userDto.getNickName())
                 .build();

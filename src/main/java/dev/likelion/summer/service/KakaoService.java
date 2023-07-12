@@ -101,7 +101,7 @@ public class KakaoService {
             JsonElement element = parser.parse(result);
 
             JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-            long userId = element.getAsJsonObject().get("id").getAsLong();
+            Long userId = element.getAsJsonObject().get("id").getAsLong();
 
 
             String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
@@ -114,7 +114,7 @@ public class KakaoService {
             userInfo.put("email", email);
 //            userInfo.put("phoneNumber", phoneNumber);
 //            userInfo.put("birthDay", birthDay);
-//            userInfo.put("userKakaoId", userId);
+            userInfo.put("userKakaoId", userId);
 //
 //            System.out.println("user name: " + name);
 //            System.out.println("user email: " + email);
