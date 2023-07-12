@@ -9,7 +9,10 @@ body {
   position: relative;
   left: -20px;
 }
-.rightcontainer {
+.rightcontainerr {
+  position: fixed;
+  top: 100px;
+  left: 400px;
   width: 813px;
   height: 675px;
   z-index: 0;
