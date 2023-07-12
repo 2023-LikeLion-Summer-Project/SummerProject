@@ -14,7 +14,7 @@ function Screen() {
         </div>
         <div className="verticalLine"></div>
       </div>
-      <div className="rightcontainer">
+      <div className="rightcontainerr">
         <div className="memoBox">
           <div id="memotext">
             <div className="memoTextt">Memo</div>
