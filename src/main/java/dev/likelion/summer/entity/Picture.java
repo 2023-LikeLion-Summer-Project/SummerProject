@@ -1,5 +1,6 @@
 package dev.likelion.summer.entity;
 
+import dev.likelion.summer.dto.PictureDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +15,7 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pictureId;
 
-    @OneToOne
+    @OneToOne(mappedBy = "picture", cascade = CascadeType.ALL)
     private Post post; // 게시물과 다대일 관계
 
     private String filePath;
@@ -25,6 +26,13 @@ public class Picture {
         return Picture.builder()
                 .fileName(fileName)
                 .filePath(filePath)
+                .build();
+    }
+
+    public static Picture toPicture(PictureDto pictureDto) {
+        return Picture.builder()
+                .filePath(pictureDto.getFilePath())
+                .fileName(pictureDto.getFileName())
                 .build();
     }
 }

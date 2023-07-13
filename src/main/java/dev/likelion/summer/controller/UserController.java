@@ -21,7 +21,6 @@ import java.util.HashMap;
 public class UserController {
     private final UserService userService;
     private final KakaoService kakaoService;
-
     @GetMapping("/add/kakao/login")
     public ModelAndView loginPage() {
         ModelAndView modelAndView = new ModelAndView();

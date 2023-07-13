@@ -1,5 +1,6 @@
 package dev.likelion.summer.controller;
 
+import dev.likelion.summer.dto.PictureDto;
 import dev.likelion.summer.dto.PostDto;
 import dev.likelion.summer.entity.Picture;
 import dev.likelion.summer.entity.Post;
@@ -15,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
@@ -29,18 +31,21 @@ public class PostController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Long> addPost(@RequestPart(value = "post") PostRequest postRequest, @RequestPart(value = "picture")MultipartHttpServletRequest multiRequest) {
-        Picture picture = new Picture();
+    @PostMapping(value = "/add", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE })
+    public ResponseEntity<Long> addPost(@RequestPart(value = "post") PostRequest postRequest, @RequestPart(value = "picture") MultipartFile multiRequest) {
+        PictureDto pictureDto = new PictureDto();
         try {
-            picture = pictureService.uploadFile(multiRequest);
+            pictureDto = pictureService.uploadFile(multiRequest);
         } catch (Exception e) {
             if (logger.isErrorEnabled()) {
                 logger.error("#Exception Message : {}", e.getMessage());
             }
         }
+        Picture picture = Picture.toPicture(pictureDto);
+        Long pictureId = pictureService.savePicture(picture);
 
-        Long postId = postService.addPost(PostDto.toPostDto(postRequest), postRequest.getUserId(), picture);
+        Long postId = postService.addPost(PostDto.toPostDto(postRequest), postRequest.getUserId(), pictureService.getOnePicture(pictureId));
+
 
         return ResponseEntity.ok(postId);
     }
