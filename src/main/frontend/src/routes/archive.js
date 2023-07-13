@@ -1,24 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/header";
 import Layout from "../components/layout";
 import styled from "styled-components";
-import datalist from "../tempdata/photo.json";
+import Datalist from "./datalist";
+import Sidebar from "../components/sidebar";
 
-const archive = () => {
+const Archive = () => {
   return (
     <>
       <Header />
-      <Layout>
-        <Text>Archive Page</Text>
-      </Layout>
+      <Sidebar />
+      <Wrapper>
+        <Datalist></Datalist>
+      </Wrapper>
     </>
   );
 };
 
-export default archive;
+export default Archive;
 
-const Text = styled.div`
-  display: block;
-  margin: 0 auto;
+const Wrapper = styled.div`
+  display: inline-flex;
+  justify-content: space-evenly;
+  padding-top: 75px;
+  height: 100vh;
+  width: 82vw;
   color: white;
 `;
