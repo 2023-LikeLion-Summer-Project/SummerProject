@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const REST_API_KEY = "27a229e3d0e076567b75011e231c7cda";
-  const REDIRECT_URI = "http://localhost:3000/main";
+  const REDIRECT_URI = "http://localhost:8080/add/kakao/permission";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const KakaoLoginPage = () => {
