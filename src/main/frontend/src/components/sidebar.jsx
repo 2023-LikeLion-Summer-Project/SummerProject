@@ -4,11 +4,7 @@ import SidebarItem from "./sidebarItem";
 import styled from "styled-components";
 
 function Sidebar() {
-  const menus = [
-    { name: "Profile", path: "/" },
-    { name: "Folder", path: "/" },
-    { name: "Scrap", path: "/" },
-  ];
+  const menus = [{ name: "Profile" }, { name: "Folder" }, { name: "Scrap" }];
 
   return (
     <Sidebars>
