@@ -1,0 +1,22 @@
+{
+  "게시글1": {
+    "content": "설명1",
+    "picture": "img1.png",
+    "location": "경주"
+  },
+  "게시글2": {
+    "content": "설명2",
+    "picture": "img2.png",
+    "location": "포항"
+  },
+  "게시글3": {
+    "content": "설명3",
+    "picture": "img3.png",
+    "location": "대구"
+  },
+  "게시글4": {
+    "content": "설명4",
+    "picture": "img4.png",
+    "location": "서울"
+  }
+}
