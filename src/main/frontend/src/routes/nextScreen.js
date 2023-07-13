@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/header";
 import "../routes/nextScree.css";
+import calendar from "../img/calendar.png";
+import { useNavigate } from "react-router-dom";
 
 function Screen() {
+  const pageMove = ({history}) =>{
+    const handleclick2 = () => {
+      history.push('/nextt');
+    }
+  }
+
+  const [editing, setEditing] = useState(false);
+
+  const [text, setText] = useState("제목을 작성해주세요");
+
+  const handleClick = () => {
+    setEditing(true);
+  };
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
   return (
     <div>
       <Header />
@@ -40,6 +59,40 @@ function Screen() {
               </div>
             </div>
             <div className="nextRightContainer">
+              <div className="Title">
+                <div className="Title" onClick={handleClick}>
+                  {editing ? (
+                    <input
+                      className="Title"
+                      type="text"
+                      value={text}
+                      onChange={handleChange}
+                    />
+                  ) : (
+                    <span>{text}</span>
+                  )}
+                </div>
+              </div>
+              <div className="Date">
+                <input id="date" placeholder="날짜를 입력해주세요."></input>
+                <img className="calendar" src={calendar} alt="cal"></img>
+              </div>
+              <div className="Time">
+                <p>시간을 입력해주세요.</p>
+              </div>
+              <div>
+                <p>방문했던 장소를 기록해주세요.</p>
+              </div>
+              <div>
+                <p>함께간 사람들을 기록해보세요.</p>
+              </div>
+              <div className="largest">:</div>
+              <div className="largebar"></div>
+              <div className="Confirm">
+                <div>
+                  <button >확인</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

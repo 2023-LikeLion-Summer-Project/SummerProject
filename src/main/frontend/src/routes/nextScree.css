@@ -19,8 +19,17 @@ body {
   border-radius: 20px;
   background: #d9d9d9;
 }
+.nextRightContainer {
+  display: inline-block;
+  position: absolute;
+  line-height: 44px;
+  left: 220px;
+  color: #8b8b8b;
+  width: 500px;
+}
 .nextLeftContainer {
   line-height: 40px;
+  display: inline-block;
 }
 .memoBox {
   position: relative;
@@ -34,4 +43,48 @@ body {
   position: relative;
   left: -20px;
   border: 0.1px solid black;
+}
+.nextRightContainer > div {
+  border-radius: 10px;
+  background-color: #bababa;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+#date {
+  display: inline-block;
+  position: relative;
+  top: -20px;
+  eight: 40px;
+  margin-top: 7px;
+  color: #bfbfbf;
+}
+
+.Date {
+  height: 40px;
+}
+
+.calendar {
+  top: -16px;
+  position: relative;
+}
+
+.largest {
+  height: 240px;
+}
+
+.Confirm {
+  position: relative;
+  display: inline-block;
+  top: -20px;
+  height: 36px;
+  align-items: center;
+  left: 340px;
+}
+.Confirm > div {
+  width: 100px;
+  text-align: center;
+}
+button {
+  background: rgba(1, 1, 1, 0);
 }
