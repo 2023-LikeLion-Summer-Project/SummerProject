@@ -1,15 +1,13 @@
 package dev.likelion.summer.controller;
 
 import dev.likelion.summer.dto.UserDto;
+import dev.likelion.summer.entity.User;
 import dev.likelion.summer.service.KakaoService;
 import dev.likelion.summer.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -29,15 +27,25 @@ public class RedirectController {
         String accessToken = tokens[0];
         String refreshToken = tokens[1];
 
+
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(accessToken);
-        // access token 받은 이후 사용자 정보 받아오는 것을 어디에 처리할 것인지?
+        User tempUser = userService.findByKakaoId((Long) userInfo.get("userKakaoId"));
 
-        if(userService.findByKakaoId((Long) userInfo.get("userKakaoId")) != null) {
-
+        if(tempUser != null) {
+            tempUser.setAccessToken(accessToken);
+            userService.findByKakaoId((Long) userInfo.get("userKakaoId")).setAccessToken(accessToken);
         } else {
             userAdd(accessToken, refreshToken, userInfo.get("email").toString(), userInfo.get("nickname").toString(),
                     (Long) userInfo.get("userKakaoId"));
         }
+
+
+//        if(userService.getUserById(userService.findByKakaoId((Long) userInfo.get("userKakaoId"))).getKakaoUserId() != null) {
+//            userService.getUserById(userService.findByKakaoId((Long)userInfo.get("userKakaoId"))).setAccessToken(accessToken);
+//        } else {
+//            userAdd(accessToken, refreshToken, userInfo.get("email").toString(), userInfo.get("nickname").toString(),
+//                    (Long) userInfo.get("userKakaoId"));
+//        }
         return "redirect:http://localhost:3000/main";
     }
 
@@ -46,5 +54,19 @@ public class RedirectController {
         Long userId = userService.addUser(UserDto.toUserDto(accessToken, refreshToken, email, nickname, userKakaoId));
 
         return ResponseEntity.ok(userId);
+    }
+
+    @RequestMapping(value = "/logout/{id}")
+    public String userLogout(@PathVariable("id") Long id) {
+        String userToken = userService.getUserById(id).getAccessToken();
+        System.out.println(userToken);
+
+
+        kakaoService.kakaoLogout(userToken);
+        userService.getUserById(id).setAccessToken(null);
+
+        System.out.println(userService.getUserById(id).getAccessToken());
+
+        return "redirect:http://localhost:3000/login";
     }
 }

@@ -17,11 +17,11 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long findByKakaoId(Long id) {
+    public User findByKakaoId(Long id) {
         User returnId = userRepository.findByKakaoUserId(id);
         
         if(returnId != null) {
-            return returnId.getKakaoUserId();
+            return returnId; // user id 반환
         } else {
             return null;
         }
