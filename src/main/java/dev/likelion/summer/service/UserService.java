@@ -17,6 +17,19 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
+    public Long findByKakaoId(Long id) {
+        User returnId = userRepository.findByKakaoUserId(id);
+        
+        if(returnId != null) {
+            return returnId.getKakaoUserId();
+        } else {
+            return null;
+        }
+
+
+    }
+
+    @Transactional
     public Long addUser(UserDto userDto) {
         User user = userRepository.save(User.toUser(userDto));
         return user.getUserId();

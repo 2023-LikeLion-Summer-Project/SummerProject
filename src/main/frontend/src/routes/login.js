@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../img/spacepic2.png";
 
 const LogIn = () => {
-  const REST_API_KEY = "27a229e3d0e076567b75011e231c7cda";
+  const REST_API_KEY = "66e775d4c6e22638c91bb9e4fb5e7e97";
   const REDIRECT_URI = "http://localhost:8080/add/kakao/permission";
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=66e775d4c6e22638c91bb9e4fb5e7e97&redirect_uri=http://localhost:8080/user/add/kakao/permission&response_type=code`;
 
   const KakaoLoginPage = () => {
     window.location.href = KAKAO_AUTH_URL;
