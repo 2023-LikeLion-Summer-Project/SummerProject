@@ -4,6 +4,7 @@ import "./login.css";
 import Header from "../components/header";
 import Layout from "../components/layout";
 import { useNavigate } from "react-router-dom";
+import Logo from "../img/spacepic2.png";
 
 const LogIn = () => {
   const REST_API_KEY = "27a229e3d0e076567b75011e231c7cda";
@@ -52,7 +53,8 @@ const LogIn = () => {
       <Layout>
         <div className="parent_div">
           <div className="main_name">
-            <h1 className="ftext">logoipsum</h1>
+            {/* <h1 className="ftext">logoipsum</h1> */}
+            <img className="ftext" src={Logo} alt="logo"></img>
             <h4 className="slogan">우리의 네컷사진을 마음껏 뽐내보세요!</h4>
           </div>
           <div className="loginbox">

@@ -25,13 +25,18 @@ header {
 }
 
 .ftext {
-  color: #fff;
+  /* color: #fff;
   text-align: center;
   font-size: 88px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  letter-spacing: 0.46px;
+  letter-spacing: 0.46px; */
+  display: block;
+  margin: 0 auto;
+  width: 400px;
+  height: 120px;
+  align-items: center;
 }
 
 .slogan {
