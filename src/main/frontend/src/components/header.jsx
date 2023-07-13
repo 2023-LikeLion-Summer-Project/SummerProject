@@ -56,6 +56,7 @@ const HeaderContents = styled.div`
 
 const Logo = styled.img`
   height: 30px;
+  margin-left: 20px;
 `;
 
 const Profile = styled.img`
