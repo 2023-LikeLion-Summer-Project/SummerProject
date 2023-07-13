@@ -19,4 +19,11 @@ public class PictureDto {
                 .fileName(fileName)
                 .build();
     }
+
+    public static PictureDto toPictureDto(Picture picture) {
+        return PictureDto.builder()
+                .filePath(picture.getFilePath())
+                .fileName(picture.getFileName())
+                .build();
+    }
 }

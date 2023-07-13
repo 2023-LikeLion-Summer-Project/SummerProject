@@ -10,6 +10,7 @@ import dev.likelion.summer.resquest.PostUpdateRequest;
 import dev.likelion.summer.service.PictureService;
 import dev.likelion.summer.service.PostService;
 import dev.likelion.summer.service.UserService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -93,4 +94,5 @@ public class PostController {
 
         return ResponseEntity.ok(null);
     }
+
 }

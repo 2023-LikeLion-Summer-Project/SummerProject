@@ -1,5 +1,7 @@
 package dev.likelion.summer.response;
 
+import dev.likelion.summer.dto.PictureDto;
+import dev.likelion.summer.entity.Picture;
 import dev.likelion.summer.entity.Post;
 import lombok.*;
 
@@ -10,6 +12,8 @@ import lombok.*;
 @RequiredArgsConstructor
 public class PostResponse {
     private Long postId;
+
+    private PictureDto picture;
 
     private String header;
 
@@ -25,6 +29,7 @@ public class PostResponse {
 
     public static PostResponse toPostResponse(Post post) {
         return PostResponse.builder()
+                .picture(PictureDto.toPictureDto(post.getPicture()))
                 .postId(post.getPostId())
                 .header(post.getHeader())
                 .contents(post.getContents())
