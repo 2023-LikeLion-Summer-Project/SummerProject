@@ -5,11 +5,11 @@ import calendar from "../img/calendar.png";
 import { useNavigate } from "react-router-dom";
 
 function Screen() {
-  const pageMove = ({history}) =>{
+  const pageMove = ({ history }) => {
     const handleclick2 = () => {
-      history.push('/nextt');
-    }
-  }
+      history.push("/nextt");
+    };
+  };
 
   const [editing, setEditing] = useState(false);
 
@@ -31,7 +31,7 @@ function Screen() {
           <h2 id="two">02 Memo</h2>
           <h2 id="three">03 Check</h2>
         </div>
-        <div className="verticalLine"></div>
+        {/* <div className="verticalLine"></div> */}
       </div>
       <div className="rightcontainerr">
         <div className="memoBox">
@@ -90,7 +90,7 @@ function Screen() {
               <div className="largebar"></div>
               <div className="Confirm">
                 <div>
-                  <button >확인</button>
+                  <button>확인</button>
                 </div>
               </div>
             </div>

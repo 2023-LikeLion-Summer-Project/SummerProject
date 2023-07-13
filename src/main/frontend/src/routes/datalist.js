@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import ModalFrame from "../components/modal";
 
-function PostList() {
+const PostList = ({ handleModal }) => {
   const jsonData = {
     spacepic: {
       content: "스페이스픽은 계속됩니닷",
@@ -29,6 +30,19 @@ function PostList() {
     },
   };
 
+  const [selectedPostKey, setSelectedPostKey] = useState(null);
+  const [selectedPostData, setSelectedPostdata] = useState(null);
+
+  const handleModalOpen = (postKey) => {
+    setSelectedPostKey(postKey);
+    setSelectedPostdata(jsonData[postKey]);
+  };
+
+  const handleModalClose = () => {
+    setSelectedPostKey(null);
+    setSelectedPostdata(null);
+  };
+
   return (
     <div>
       {Object.keys(jsonData).map((postKey) => (
@@ -37,11 +51,26 @@ function PostList() {
           <Title>{postKey}</Title>
           <Info>{jsonData[postKey].location}</Info>
           <Info>{jsonData[postKey].date}</Info>
+          <Wrap>
+            <Detailbtn onClick={() => handleModalOpen(postKey)}>
+              ► show more
+            </Detailbtn>
+          </Wrap>
+          {selectedPostKey === postKey && (
+            <ModalFrame showModal={true} _handleModal={handleModalClose}>
+              <Mtitle>저장 기록 보기</Mtitle>
+              <ContainerBox src={selectedPostData.image} />
+              <Title>{selectedPostKey}</Title>
+              <Info>{selectedPostData.content}</Info>
+              <Info>{selectedPostData.location}</Info>
+              <Info>{selectedPostData.date}</Info>
+            </ModalFrame>
+          )}
         </Box>
       ))}
     </div>
   );
-}
+};
 
 export default PostList;
 
@@ -76,4 +105,19 @@ const Info = styled.p`
   font-weight: 450;
   line-height: normal;
   letter-spacing: 0.2px;
+`;
+
+const Detailbtn = styled.button`
+  color: white;
+  border: none;
+  font-size: 17px;
+  font-style: italic;
+`;
+
+const Wrap = styled.div`
+  float: right;
+`;
+
+const Mtitle = styled.h1`
+  color: white;
 `;
