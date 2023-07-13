@@ -17,6 +17,7 @@ import java.util.HashMap;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
+
 public class UserController {
     private final UserService userService;
     private final KakaoService kakaoService;
