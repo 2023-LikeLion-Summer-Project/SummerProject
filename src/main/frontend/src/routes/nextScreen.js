@@ -5,10 +5,10 @@ import calendar from "../img/calendar.png";
 import { useNavigate } from "react-router-dom";
 
 function Screen() {
-  const pageMove = ({ history }) => {
-    const handleclick2 = () => {
-      history.push("/nextt");
-    };
+  const navigate = useNavigate();
+
+  const oonClick = () => {
+    navigate("/check");
   };
 
   const [editing, setEditing] = useState(false);
@@ -90,7 +90,7 @@ function Screen() {
               <div className="largebar"></div>
               <div className="Confirm">
                 <div>
-                  <button>확인</button>
+                  <button onClick={oonClick}>확인</button>
                 </div>
               </div>
             </div>

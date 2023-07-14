@@ -8,6 +8,7 @@ function Write() {
 
   const navigate = useNavigate();
   const reader = new FileReader();
+
   reader.onloadend = () => {
     setFileSrc(reader.result);
     navigate("/nextScreen");
@@ -15,8 +16,21 @@ function Write() {
 
   const handleFileInput = (event) => {
     const file = event.target.files[0];
+
     console.log(file);
     reader.readAsDataURL(file);
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const imageData = reader.result;
+        localStorage.setItem("imageData", imageData);
+      };
+
+      reader.readAsDataURL(file);
+      const filee = URL.createObjectURL(file);
+      console.log(filee);
+    }
   };
 
   return (
