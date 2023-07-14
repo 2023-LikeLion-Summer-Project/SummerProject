@@ -1,10 +1,17 @@
 import accountLogo from "./img/accountCircle.png";
 import React from "react";
 import "../routes/main.css";
-// import spacepic from "./img/spacepic2.png";
+// import spacepic from "./img/spacepic2.png
+import { useNavigate } from "react-router-dom";
 import vector from "./img/vector.png";
 import Header from "../components/header";
-function main() {
+
+function Main() {
+  const navigatee = useNavigate();
+
+  const onCclick = () => {
+    navigatee("/write");
+  };
   return (
     <div className="container">
       <Header />
@@ -19,7 +26,7 @@ function main() {
           </span>
         </div>
       </div>
-      <div className="rightcontainer">
+      <div onClick={onCclick} className="rightcontainer">
         <div className="containerBox">
           <div className="containerBox2">
             <img className="vector" alt="vector" src={vector}></img>
@@ -195,4 +202,4 @@ function main() {
   );
 }
 
-export default main;
+export default Main;
